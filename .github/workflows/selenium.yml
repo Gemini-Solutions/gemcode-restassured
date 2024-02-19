@@ -17,5 +17,25 @@ jobs:
 
       - name: Build and run Selenium tests
         run: |
-          mvn test -DsuiteXmlFile=testng.xml
+          mkdir test-output
+          FILE_NAME=reportName.properties
+
+          getProperty() {
+            prop_key=$1
+            prop_value=$(cat ${FILE_NAME} | grep ${prop_key} | cut -d'=' -f2)
+          }
+          getProperty reportName
+          cd test-output
+          > ${prop_value}.txt
+          cd ..
+          mvn test -DsuiteXmlFile=testng.xml >> ./test-output/${prop_value}.txt
         shell: bash
+
+      - name: list files
+        if: always()
+        run: |
+          ls
+          echo
+          echo "ls test-output"
+          cd test-output
+          ls
