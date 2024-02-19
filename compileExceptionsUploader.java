@@ -17,7 +17,7 @@ public class compileExceptionsUploader {
             executionName = reportNameReader.getProperty("reportName");
             String output=readClassFileAsString("./test-output/"+executionName+".txt");
             if (output.contains("on project RestassuredExecution: Compilation failure")) {
-                output = output.split("Error:  Failed to execute goal org.apache.maven.plugins:maven-compiler")[1].replace("\"", "\\\"")
+                output = output.split("COMPILATION ERROR :")[1].replace("\"", "\\\"")
                         .replace("\n", "\\n")
                         .replace("\r", "\\r");;
                 String classContent = readClassFileAsString("./src/main/java/App.java").replace("\"", "\\\"")
