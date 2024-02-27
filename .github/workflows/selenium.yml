@@ -3,7 +3,7 @@ name: Run Restassured Tests
 on:
   push:
     branches:
-      - main  # Change this to your default branch if different
+      - beta1  # Change this to your default branch if different
     paths:
       - 'src/main/java/App.java'
 
